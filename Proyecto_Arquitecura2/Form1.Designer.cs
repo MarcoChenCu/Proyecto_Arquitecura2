@@ -103,6 +103,7 @@
             // 
             // CbConfiguraciones
             // 
+            this.CbConfiguraciones.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.CbConfiguraciones.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.CbConfiguraciones.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CbConfiguraciones.ForeColor = System.Drawing.Color.Cyan;
@@ -201,12 +202,13 @@
             this.BtnCrear.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnCrear.ForeColor = System.Drawing.Color.Cyan;
             this.BtnCrear.Location = new System.Drawing.Point(301, 506);
-            this.BtnCrear.Margin = new System.Windows.Forms.Padding(2);
+            this.BtnCrear.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BtnCrear.Name = "BtnCrear";
             this.BtnCrear.Size = new System.Drawing.Size(156, 48);
             this.BtnCrear.TabIndex = 9;
             this.BtnCrear.Text = "Crear configuración";
             this.BtnCrear.UseVisualStyleBackColor = false;
+            this.BtnCrear.Click += new System.EventHandler(this.BtnCrear_Click);
             // 
             // BtnAdmin
             // 
@@ -215,7 +217,7 @@
             this.BtnAdmin.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnAdmin.ForeColor = System.Drawing.Color.Cyan;
             this.BtnAdmin.Location = new System.Drawing.Point(506, 506);
-            this.BtnAdmin.Margin = new System.Windows.Forms.Padding(2);
+            this.BtnAdmin.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BtnAdmin.Name = "BtnAdmin";
             this.BtnAdmin.Size = new System.Drawing.Size(156, 48);
             this.BtnAdmin.TabIndex = 10;
@@ -228,7 +230,7 @@
             this.BtnMin.BackgroundImage = global::Proyecto_Arquitecura2.Properties.Resources.min;
             this.BtnMin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.BtnMin.Location = new System.Drawing.Point(903, 8);
-            this.BtnMin.Margin = new System.Windows.Forms.Padding(2);
+            this.BtnMin.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BtnMin.Name = "BtnMin";
             this.BtnMin.Size = new System.Drawing.Size(23, 23);
             this.BtnMin.TabIndex = 12;
@@ -241,7 +243,7 @@
             this.BtnCerrar.BackgroundImage = global::Proyecto_Arquitecura2.Properties.Resources.x;
             this.BtnCerrar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.BtnCerrar.Location = new System.Drawing.Point(930, 8);
-            this.BtnCerrar.Margin = new System.Windows.Forms.Padding(2);
+            this.BtnCerrar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BtnCerrar.Name = "BtnCerrar";
             this.BtnCerrar.Size = new System.Drawing.Size(23, 23);
             this.BtnCerrar.TabIndex = 11;

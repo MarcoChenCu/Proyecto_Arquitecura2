@@ -26,7 +26,7 @@ namespace Proyecto_Arquitecura2
             Puerto = new System.IO.Ports.SerialPort();
             //Intentar detecar el puerto del arduino
             Puerto.PortName = "COM6";
-            Puerto.Open();
+            //Puerto.Open();
             Puerto.BaudRate = 9600;
             Puerto.DataReceived += SerialPort1_DataReceived;
         }
@@ -98,6 +98,12 @@ namespace Proyecto_Arquitecura2
 
         private void Form1_Shown(object sender, EventArgs e)
         {        
+        }
+
+        private void BtnCrear_Click(object sender, EventArgs e)
+        {
+            FrmNewConfig CrearConfig = new FrmNewConfig();
+            CrearConfig.ShowDialog();
         }
 
         private void BtnCerrar_Click(object sender, EventArgs e)
