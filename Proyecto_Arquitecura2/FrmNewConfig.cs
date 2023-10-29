@@ -12,6 +12,7 @@ namespace Proyecto_Arquitecura2
 {
     public partial class FrmNewConfig : Form
     {
+        int[] Tiempos = new int[] { 1, 5, 15, 30, 60, 720, 1440};
 
         public FrmNewConfig()
         {
@@ -21,6 +22,13 @@ namespace Proyecto_Arquitecura2
         private void BtnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+        public event EventHandler ChildFormClosed;
+
+        protected override void OnFormClosed(FormClosedEventArgs e)
+        {
+            base.OnFormClosed(e);
+            ChildFormClosed?.Invoke(this, EventArgs.Empty);
         }
 
         private void BtnCrear_Click(object sender, EventArgs e)
@@ -54,9 +62,29 @@ namespace Proyecto_Arquitecura2
             }
             else
             {
-                MessageBox.Show("Configuración guardada");
+                InsertarBD(TbNombre.Text, Convert.ToSingle(TbMinTemp.Text), Convert.ToSingle(TbMaxTemp.Text), Convert.ToSingle(TbMinHum.Text), Convert.ToSingle(TbMaxHum.Text), Convert.ToSingle(TbMinLum.Text), Convert.ToSingle(TbMaxLum.Text), Tiempos[CbTiempo.SelectedIndex]);
                 this.Close();
             }
+
+        }
+
+        private void InsertarBD(string nombre,float MinTemp,float MaxTemp, float MinHum,float MaxHum,float MinLum,float MaxLum, int tiempo)
+        {
+            try
+            {
+                tbConfigTableAdapter.InsertConf(nombre, MinTemp, MaxTemp, MinHum, MaxHum, MinLum, MaxLum, tiempo);
+                MessageBox.Show("Configuración guardada");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Error al guardar la configuración\nContacte al ingeniero más cercano","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
+        }
+
+        private void FrmNewConfig_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'bD_ProyectoDataSet1.TbConfig' table. You can move, or remove it, as needed.
+            this.tbConfigTableAdapter.Fill(this.bD_ProyectoDataSet1.TbConfig);
 
         }
     }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -47,6 +48,11 @@
             this.BtnCrear = new System.Windows.Forms.Button();
             this.BtnSalir = new System.Windows.Forms.Button();
             this.CbTiempo = new System.Windows.Forms.ComboBox();
+            this.bD_ProyectoDataSet1 = new Proyecto_Arquitecura2.BD_ProyectoDataSet();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.tbConfigTableAdapter = new Proyecto_Arquitecura2.BD_ProyectoDataSetTableAdapters.TbConfigTableAdapter();
+            ((System.ComponentModel.ISupportInitialize)(this.bD_ProyectoDataSet1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -283,8 +289,8 @@
             this.CbTiempo.Items.AddRange(new object[] {
             "1 min",
             "5 min",
-            "20 min",
-            "30",
+            "15 min",
+            "30 min",
             "1 hr",
             "12 hr",
             "24 hr"});
@@ -293,6 +299,20 @@
             this.CbTiempo.Size = new System.Drawing.Size(68, 21);
             this.CbTiempo.TabIndex = 20;
             this.CbTiempo.Text = "1 min";
+            // 
+            // bD_ProyectoDataSet1
+            // 
+            this.bD_ProyectoDataSet1.DataSetName = "BD_ProyectoDataSet";
+            this.bD_ProyectoDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // bindingSource1
+            // 
+            this.bindingSource1.DataMember = "TbConfig";
+            this.bindingSource1.DataSource = this.bD_ProyectoDataSet1;
+            // 
+            // tbConfigTableAdapter
+            // 
+            this.tbConfigTableAdapter.ClearBeforeFill = true;
             // 
             // FrmNewConfig
             // 
@@ -323,6 +343,9 @@
             this.Name = "FrmNewConfig";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmNewConfig";
+            this.Load += new System.EventHandler(this.FrmNewConfig_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.bD_ProyectoDataSet1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -348,5 +371,8 @@
         private System.Windows.Forms.Button BtnCrear;
         private System.Windows.Forms.Button BtnSalir;
         private System.Windows.Forms.ComboBox CbTiempo;
+        private BD_ProyectoDataSet bD_ProyectoDataSet1;
+        private System.Windows.Forms.BindingSource bindingSource1;
+        private BD_ProyectoDataSetTableAdapters.TbConfigTableAdapter tbConfigTableAdapter;
     }
 }
