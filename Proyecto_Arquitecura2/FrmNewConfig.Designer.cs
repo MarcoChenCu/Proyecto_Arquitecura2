@@ -149,6 +149,7 @@
             this.TbNombre.Name = "TbNombre";
             this.TbNombre.Size = new System.Drawing.Size(125, 20);
             this.TbNombre.TabIndex = 8;
+            this.TbNombre.TextChanged += new System.EventHandler(this.TbNombre_TextChanged);
             // 
             // TbMinTemp
             // 

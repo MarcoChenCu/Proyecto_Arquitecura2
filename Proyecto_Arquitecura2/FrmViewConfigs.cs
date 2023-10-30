@@ -16,6 +16,13 @@ namespace Proyecto_Arquitecura2
         {
             InitializeComponent();
         }
+        public event EventHandler ChildFormClosed;
+
+        protected override void OnFormClosed(FormClosedEventArgs e)
+        {
+            base.OnFormClosed(e);
+            ChildFormClosed?.Invoke(this, EventArgs.Empty);
+        }
 
         private void tbConfigBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {

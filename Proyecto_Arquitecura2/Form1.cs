@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Proyecto_Arquitecura2.BD_ProyectoDataSetTableAdapters;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO.Ports;
@@ -11,10 +12,10 @@ namespace Proyecto_Arquitecura2
     public partial class Form1 : Form
     {
         //Variables para los progressbar
-        int ID, tiempo;
-        double Temperatura=0,MinTemp=1.9,MaxTemp=2.35;
+        int ID=0, tiempo=1;
+        double Temperatura=0,MinTemp=1,MaxTemp=2.30;
         double Humedad = 0,MinHum = 0,MaxHum = 15;
-        double Luminosidad = 0, MinLum = 0, MaxLum = 15;
+        double Luminosidad = 0, MinLum = 0.01, MaxLum = 15;
         string HoraGuardado;
 
         //Variable para el puerto serial
@@ -58,7 +59,7 @@ namespace Proyecto_Arquitecura2
                     //Muestra la temperatura en el label (Se elimina la T)
                     PbTemp.Text = line.Remove(0, 1) + " °C";
                     Temperatura = float.Parse(line.Remove(0, 1));
-                }catch(Exception ex){}
+                }catch{}
             }
             //Si el valor tiene una H al inicio es la humedad
             else if (line[0] == 'H')
@@ -69,7 +70,7 @@ namespace Proyecto_Arquitecura2
                     PbHumedad.Text = line.Remove(0, 1) + " %";
                     Humedad = float.Parse(line.Remove(0, 1));
                 }
-                catch (Exception ex) { }
+                catch{}
             }
 
             else if (line[0]=='L')
@@ -77,12 +78,11 @@ namespace Proyecto_Arquitecura2
                 try
                 {
                     //Muestra la humedad en el label (Se elimina la L)
-                    PbLuminosidad.Text = line.Remove(0, 1) + " %";
-                    Luminosidad = float.Parse(line.Remove(0, 1));
+                    PbLuminosidad.Text = line.Remove(0,1) + " %";
+                    Luminosidad = float.Parse(line.Remove(0,1));
                 }
-                catch (Exception ex) { }
+                catch{}
             }
-
             else
             {
                 //si no es ninguno de los anteriores se muestra en el label
@@ -127,11 +127,14 @@ namespace Proyecto_Arquitecura2
         private void BtnAdmin_Click(object sender, EventArgs e)
         {
             FrmViewConfigs VerConfiguraciones = new FrmViewConfigs();
+            VerConfiguraciones.ChildFormClosed += FrmNewConfig_Close;
             VerConfiguraciones.ShowDialog();
         }
 
         private void BtnDatos_Click(object sender, EventArgs e)
         {
+            FrmDatos FrmVerDatos = new FrmDatos(ID);
+            FrmVerDatos.ShowDialog();
         }
 
         private void CbConfiguraciones_SelectedIndexChanged(object sender, EventArgs e)
@@ -139,17 +142,28 @@ namespace Proyecto_Arquitecura2
             try
             {
                 //Obtener los datos de la configuración seleccionada
-                int? time = tbConfigTableAdapter.GetTiempo(CbConfiguraciones.Text);
-                //Establecer la hora de guardado
-                DateTime hora = DateTime.Now;
-                tiempo = Convert.ToInt32(time);
-                hora = hora.AddMinutes(tiempo);
-                HoraGuardado = hora.ToString("HH:mm");
-                LbEstado.Text = "Configuración cargada";
-                LbEstado.ForeColor = Color.Green;
-                LbInfo.Text = "Siguiente guardado:\n" + "     "+HoraGuardado;
-                CbConfiguraciones.SelectedIndex = -1;
-            }catch(Exception ex)
+                ID = Convert.ToInt32(tbConfigTableAdapter.GetID(CbConfiguraciones.Text));
+                if(ID>0)
+                {
+                    timer1.Stop();
+                    //Establecer la hora de guardado
+                    tiempo = Convert.ToInt32(tbConfigTableAdapter.GetTiempo(ID));
+                    MinTemp = Convert.ToDouble(tbConfigTableAdapter.GetMinTemp(ID));
+                    MaxTemp = Convert.ToDouble(tbConfigTableAdapter.GetMaxTemp(ID));
+                    MinHum = Convert.ToDouble(tbConfigTableAdapter.GetMinHumedad(ID));
+                    MaxHum = Convert.ToDouble(tbConfigTableAdapter.GetMaxHumedad(ID));
+                    MinLum = Convert.ToDouble(tbConfigTableAdapter.GetMinLum(ID));
+                    MaxLum = Convert.ToDouble(tbConfigTableAdapter.GetMaxLum(ID));
+                    timer1.Start();
+                    LbTempData.Text = MinTemp.ToString()+" °C - "+MaxTemp.ToString()+" °C"; 
+                    LbHumData.Text = MinHum.ToString() + " % - " + MaxHum.ToString() + " %";
+                    LbLumData.Text = MinLum.ToString() + " % - " + MaxLum.ToString() + " %";
+                    GuardarDatos();
+                    LbEstado.Text = "Configuración cargada";
+                    LbEstado.ForeColor = Color.Green;
+                }
+
+            }catch
             {
                 LbEstado.Text = "Error al cargar la configuración";
                 LbEstado.ForeColor = Color.Red;
@@ -182,21 +196,18 @@ namespace Proyecto_Arquitecura2
         private void timer1_Tick(object sender, EventArgs e)
         {
             DateTime hora = DateTime.Now;
-            string Ahora = hora.ToString("HH:mm");
+            string Ahora = hora.ToString("HH:mm:ss"); 
             if (String.Equals(Ahora, HoraGuardado))
-            {
-                LbEstado.Text = "----";
-                LbEstado.ForeColor = Color.FromArgb(64, 64, 64);
-                //Si la hora actual es igual a la hora de guardado se guarda la información
-                hora = hora.AddMinutes(tiempo);
-                HoraGuardado = hora.ToString("HH:mm");
-                LbInfo.Text = "Siguiente guardado:\n" + "     "+HoraGuardado;
+            {             
                 try
                 {
                     hora = DateTime.Now;
                     tbDatosTableAdapter.InsertMediciones(1,Temperatura, Humedad, Luminosidad, hora.ToString());
+                }catch
+                {
+                    MessageBox.Show("Error al guardar la información", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                MessageBox.Show("Se ha guardado la información", "Guardado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
             }
             //El valor de los progressbar se obtiene de la función GetPorcent
             PbTemp.Value = GetPorcent(Temperatura, MinTemp, MaxTemp);
@@ -255,6 +266,18 @@ namespace Proyecto_Arquitecura2
             // Mapear el valor a un rango de 0 a 100
             mappedValue = Math.Max(0, Math.Min(100, mappedValue));
             return Convert.ToInt32(mappedValue);
+        }
+
+        private void GuardarDatos()
+        {
+            DateTime hora = DateTime.Now;
+            LbEstado.Text = "----";
+            LbEstado.ForeColor = Color.FromArgb(64, 64, 64);
+            //Si la hora actual es igual a la hora de guardado se guarda la información
+            hora = hora.AddMinutes(tiempo);
+            HoraGuardado = hora.ToString("HH:mm:ss");
+            LbInfo.Text = "Siguiente guardado:\n" + "     " + HoraGuardado;
+
         }
     }
 }

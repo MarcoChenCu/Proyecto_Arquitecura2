@@ -12,10 +12,12 @@ namespace Proyecto_Arquitecura2
 {
     public partial class FrmDatos : Form
     {
-        public FrmDatos()
+        int ID;
+        public FrmDatos(int ID)
         {
             InitializeComponent();
-        }
+            this.ID = ID;
+        }     
 
         private void tbDatosBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
@@ -28,7 +30,7 @@ namespace Proyecto_Arquitecura2
         private void FrmDatos_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'bD_ProyectoDataSet.TbDatos' table. You can move, or remove it, as needed.
-            this.tbDatosTableAdapter.Fill(this.bD_ProyectoDataSet.TbDatos);
+
 
         }
     }

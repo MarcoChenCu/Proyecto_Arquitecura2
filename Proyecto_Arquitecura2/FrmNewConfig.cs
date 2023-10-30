@@ -13,7 +13,7 @@ namespace Proyecto_Arquitecura2
     public partial class FrmNewConfig : Form
     {
         int[] Tiempos = new int[] { 1, 5, 15, 30, 60, 720, 1440};
-
+        int? name;
         public FrmNewConfig()
         {
             InitializeComponent();
@@ -33,12 +33,17 @@ namespace Proyecto_Arquitecura2
 
         private void BtnCrear_Click(object sender, EventArgs e)
         {
-            bool tiempo=false, temp=false, hum=false, lum=false;
+            bool tiempo=false, temp=false, hum=false, lum=false,NombreExistente=false;
             string error="";
             if (CbTiempo.SelectedItem == null)
             {
                 tiempo = true;
                 error +="\n - Tiempo";
+            }
+            if (name!=null)
+            {
+                NombreExistente = true;
+                error += "\n - Configuración existente con este nombre";
             }
             if(TbMinTemp.Text == "" || TbMaxTemp.Text=="" || Convert.ToDouble(TbMaxTemp.Text)<=Convert.ToDouble(TbMinTemp.Text))
             {
@@ -56,14 +61,13 @@ namespace Proyecto_Arquitecura2
                 error += "\n - Rango de luminosidad";
             }
 
-            if (tiempo || temp || hum || lum)
+            if (tiempo || temp || hum || lum || NombreExistente)
             {
                 MessageBox.Show("Existen errores en los siguientes campos: "+error,"Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
             else
             {
                 InsertarBD(TbNombre.Text, Convert.ToSingle(TbMinTemp.Text), Convert.ToSingle(TbMaxTemp.Text), Convert.ToSingle(TbMinHum.Text), Convert.ToSingle(TbMaxHum.Text), Convert.ToSingle(TbMinLum.Text), Convert.ToSingle(TbMaxLum.Text), Tiempos[CbTiempo.SelectedIndex]);
-                this.Close();
             }
 
         }
@@ -75,7 +79,7 @@ namespace Proyecto_Arquitecura2
                 tbConfigTableAdapter.InsertConf(nombre, MinTemp, MaxTemp, MinHum, MaxHum, MinLum, MaxLum, tiempo);
                 MessageBox.Show("Configuración guardada");
             }
-            catch(Exception ex)
+            catch
             {
                 MessageBox.Show("Error al guardar la configuración\nContacte al ingeniero más cercano","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
@@ -86,6 +90,14 @@ namespace Proyecto_Arquitecura2
             // TODO: This line of code loads data into the 'bD_ProyectoDataSet1.TbConfig' table. You can move, or remove it, as needed.
             this.tbConfigTableAdapter.Fill(this.bD_ProyectoDataSet1.TbConfig);
 
+        }
+
+        private void TbNombre_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                name = tbConfigTableAdapter.CheckNombres(TbNombre.Text);
+            }catch{}
         }
     }
 }

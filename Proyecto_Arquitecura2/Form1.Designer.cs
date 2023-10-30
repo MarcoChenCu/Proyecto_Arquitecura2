@@ -50,6 +50,9 @@
             this.Img1 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.LbEstado = new System.Windows.Forms.Label();
+            this.LbTempData = new System.Windows.Forms.Label();
+            this.LbHumData = new System.Windows.Forms.Label();
+            this.LbLumData = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bD_ProyectoDataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbConfigBindingSource)).BeginInit();
@@ -70,7 +73,7 @@
             this.PbTemp.InnerColor = System.Drawing.Color.Transparent;
             this.PbTemp.InnerMargin = 2;
             this.PbTemp.InnerWidth = -1;
-            this.PbTemp.Location = new System.Drawing.Point(64, 263);
+            this.PbTemp.Location = new System.Drawing.Point(68, 263);
             this.PbTemp.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.PbTemp.MarqueeAnimationSpeed = 2000;
             this.PbTemp.Name = "PbTemp";
@@ -104,7 +107,7 @@
             this.LbTitulo.AutoSize = true;
             this.LbTitulo.Font = new System.Drawing.Font("Cooper Black", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LbTitulo.ForeColor = System.Drawing.Color.SkyBlue;
-            this.LbTitulo.Location = new System.Drawing.Point(318, 41);
+            this.LbTitulo.Location = new System.Drawing.Point(315, 41);
             this.LbTitulo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LbTitulo.Name = "LbTitulo";
             this.LbTitulo.Size = new System.Drawing.Size(353, 40);
@@ -122,7 +125,7 @@
             this.CbConfiguraciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CbConfiguraciones.ForeColor = System.Drawing.Color.Cyan;
             this.CbConfiguraciones.FormattingEnabled = true;
-            this.CbConfiguraciones.Location = new System.Drawing.Point(327, 112);
+            this.CbConfiguraciones.Location = new System.Drawing.Point(322, 112);
             this.CbConfiguraciones.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.CbConfiguraciones.Name = "CbConfiguraciones";
             this.CbConfiguraciones.Size = new System.Drawing.Size(228, 25);
@@ -167,7 +170,7 @@
             this.PbHumedad.InnerColor = System.Drawing.Color.Transparent;
             this.PbHumedad.InnerMargin = 2;
             this.PbHumedad.InnerWidth = -1;
-            this.PbHumedad.Location = new System.Drawing.Point(372, 263);
+            this.PbHumedad.Location = new System.Drawing.Point(376, 263);
             this.PbHumedad.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.PbHumedad.MarqueeAnimationSpeed = 2000;
             this.PbHumedad.Name = "PbHumedad";
@@ -200,7 +203,7 @@
             this.PbLuminosidad.InnerColor = System.Drawing.Color.Transparent;
             this.PbLuminosidad.InnerMargin = 2;
             this.PbLuminosidad.InnerWidth = -1;
-            this.PbLuminosidad.Location = new System.Drawing.Point(655, 263);
+            this.PbLuminosidad.Location = new System.Drawing.Point(659, 263);
             this.PbLuminosidad.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.PbLuminosidad.MarqueeAnimationSpeed = 2000;
             this.PbLuminosidad.Name = "PbLuminosidad";
@@ -229,7 +232,7 @@
             this.BtnCrear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnCrear.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnCrear.ForeColor = System.Drawing.Color.Cyan;
-            this.BtnCrear.Location = new System.Drawing.Point(301, 506);
+            this.BtnCrear.Location = new System.Drawing.Point(307, 489);
             this.BtnCrear.Margin = new System.Windows.Forms.Padding(2);
             this.BtnCrear.Name = "BtnCrear";
             this.BtnCrear.Size = new System.Drawing.Size(156, 48);
@@ -244,7 +247,7 @@
             this.BtnAdmin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnAdmin.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnAdmin.ForeColor = System.Drawing.Color.Cyan;
-            this.BtnAdmin.Location = new System.Drawing.Point(506, 506);
+            this.BtnAdmin.Location = new System.Drawing.Point(512, 489);
             this.BtnAdmin.Margin = new System.Windows.Forms.Padding(2);
             this.BtnAdmin.Name = "BtnAdmin";
             this.BtnAdmin.Size = new System.Drawing.Size(156, 48);
@@ -259,7 +262,7 @@
             this.BtnDatos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnDatos.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnDatos.ForeColor = System.Drawing.Color.Cyan;
-            this.BtnDatos.Location = new System.Drawing.Point(580, 112);
+            this.BtnDatos.Location = new System.Drawing.Point(575, 112);
             this.BtnDatos.Margin = new System.Windows.Forms.Padding(2);
             this.BtnDatos.Name = "BtnDatos";
             this.BtnDatos.Size = new System.Drawing.Size(108, 28);
@@ -306,7 +309,7 @@
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox2.Image = global::Proyecto_Arquitecura2.Properties.Resources._2179;
-            this.pictureBox2.Location = new System.Drawing.Point(803, 201);
+            this.pictureBox2.Location = new System.Drawing.Point(807, 201);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(73, 73);
@@ -318,7 +321,7 @@
             // 
             this.Img1.BackColor = System.Drawing.Color.Transparent;
             this.Img1.Image = global::Proyecto_Arquitecura2.Properties.Resources._2179_removebg_preview;
-            this.Img1.Location = new System.Drawing.Point(527, 201);
+            this.Img1.Location = new System.Drawing.Point(531, 201);
             this.Img1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Img1.Name = "Img1";
             this.Img1.Size = new System.Drawing.Size(73, 73);
@@ -330,7 +333,7 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Image = global::Proyecto_Arquitecura2.Properties.Resources.temp;
-            this.pictureBox1.Location = new System.Drawing.Point(193, 188);
+            this.pictureBox1.Location = new System.Drawing.Point(197, 188);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(93, 86);
@@ -343,12 +346,51 @@
             this.LbEstado.AutoSize = true;
             this.LbEstado.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LbEstado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.LbEstado.Location = new System.Drawing.Point(404, 149);
+            this.LbEstado.Location = new System.Drawing.Point(324, 151);
             this.LbEstado.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LbEstado.Name = "LbEstado";
             this.LbEstado.Size = new System.Drawing.Size(35, 15);
             this.LbEstado.TabIndex = 14;
             this.LbEstado.Text = "----";
+            // 
+            // LbTempData
+            // 
+            this.LbTempData.AutoSize = true;
+            this.LbTempData.BackColor = System.Drawing.Color.Transparent;
+            this.LbTempData.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LbTempData.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.LbTempData.Location = new System.Drawing.Point(92, 432);
+            this.LbTempData.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LbTempData.Name = "LbTempData";
+            this.LbTempData.Size = new System.Drawing.Size(35, 15);
+            this.LbTempData.TabIndex = 15;
+            this.LbTempData.Text = "----";
+            // 
+            // LbHumData
+            // 
+            this.LbHumData.AutoSize = true;
+            this.LbHumData.BackColor = System.Drawing.Color.Transparent;
+            this.LbHumData.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LbHumData.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.LbHumData.Location = new System.Drawing.Point(397, 432);
+            this.LbHumData.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LbHumData.Name = "LbHumData";
+            this.LbHumData.Size = new System.Drawing.Size(35, 15);
+            this.LbHumData.TabIndex = 16;
+            this.LbHumData.Text = "----";
+            // 
+            // LbLumData
+            // 
+            this.LbLumData.AutoSize = true;
+            this.LbLumData.BackColor = System.Drawing.Color.Transparent;
+            this.LbLumData.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LbLumData.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.LbLumData.Location = new System.Drawing.Point(687, 432);
+            this.LbLumData.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LbLumData.Name = "LbLumData";
+            this.LbLumData.Size = new System.Drawing.Size(35, 15);
+            this.LbLumData.TabIndex = 17;
+            this.LbLumData.Text = "----";
             // 
             // Form1
             // 
@@ -356,6 +398,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(33)))), ((int)(((byte)(36)))));
             this.ClientSize = new System.Drawing.Size(961, 575);
+            this.Controls.Add(this.LbLumData);
+            this.Controls.Add(this.LbHumData);
+            this.Controls.Add(this.LbTempData);
             this.Controls.Add(this.LbEstado);
             this.Controls.Add(this.BtnDatos);
             this.Controls.Add(this.BtnMin);
@@ -417,6 +462,9 @@
         private BD_ProyectoDataSetTableAdapters.TbDatosTableAdapter tbDatosTableAdapter;
         private System.Windows.Forms.BindingSource tbConfigBindingSource;
         private System.Windows.Forms.Label LbEstado;
+        private System.Windows.Forms.Label LbTempData;
+        private System.Windows.Forms.Label LbHumData;
+        private System.Windows.Forms.Label LbLumData;
     }
 }
 
