@@ -129,6 +129,7 @@ namespace Proyecto_Arquitecura2
             FrmViewConfigs VerConfiguraciones = new FrmViewConfigs();
             VerConfiguraciones.ChildFormClosed += FrmNewConfig_Close;
             VerConfiguraciones.ShowDialog();
+            //Application.OpenForms["Form1"].Visible = false;
         }
 
         private void BtnDatos_Click(object sender, EventArgs e)
@@ -197,16 +198,9 @@ namespace Proyecto_Arquitecura2
         {
             DateTime hora = DateTime.Now;
             string Ahora = hora.ToString("HH:mm:ss"); 
-            if (String.Equals(Ahora, HoraGuardado))
+            if (String.Equals(Ahora,HoraGuardado))
             {             
-                try
-                {
-                    hora = DateTime.Now;
-                    tbDatosTableAdapter.InsertMediciones(1,Temperatura, Humedad, Luminosidad, hora.ToString());
-                }catch
-                {
-                    MessageBox.Show("Error al guardar la información", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                GuardarDatos();
                 
             }
             //El valor de los progressbar se obtiene de la función GetPorcent
@@ -274,6 +268,15 @@ namespace Proyecto_Arquitecura2
             LbEstado.Text = "----";
             LbEstado.ForeColor = Color.FromArgb(64, 64, 64);
             //Si la hora actual es igual a la hora de guardado se guarda la información
+            try
+            {
+                hora = DateTime.Now;
+                tbDatosTableAdapter.InsertMediciones(ID, Temperatura, Humedad, Luminosidad, hora.ToString());
+            }
+            catch
+            {
+                MessageBox.Show("Error al guardar la información", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             hora = hora.AddMinutes(tiempo);
             HoraGuardado = hora.ToString("HH:mm:ss");
             LbInfo.Text = "Siguiente guardado:\n" + "     " + HoraGuardado;
